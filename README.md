@@ -1,6 +1,6 @@
-# node-api-seed
+# cloud-node
 
-This is a Node, Express application designed to manage API requests.  It doesn't have a database or anything, so it could be used to 'corral' API requests to other providers.
+This is the API to communicate with Magento and manage the socket.io stuff.
 
 ## Install
 First of all, clone the repository, then:
@@ -22,8 +22,3 @@ or:
 ```
 node server.js
 ```
-After you get it running, provided PORT=3000, you can test the one sample route like this:
-```
-curl -X PUT "http://localhost:3000/api/barcode"
-```
-It should return '123456'.
