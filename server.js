@@ -5,6 +5,7 @@
 // Dependencies
 const http = require('http');
 const express = require('express');
+const express_socket = require('express');
 const path = require('path');
 
 // Express Middleware
@@ -49,6 +50,13 @@ main.use(require('./api')(env));
 
 // Start the HTTP server
 const server = http.createServer(main);
+
+// Start the socket server
+const app = http.createServer(express_socket);
+
+// Initialize socket.io
+const socket = require('./socket')(express_socket(), app, env.SOCKET_PORT);
+
 server.listen(env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`\nExpress Server [PORT: ${env.PORT}] [NODE_ENV: ${env.NODE_ENV}]\n`);

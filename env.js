@@ -16,7 +16,12 @@ const vars = {
     export: true,
     type: Number,
   },
-
+  // I fixed it so the socket can run on a different port
+  SOCKET_PORT: { 
+    required: true, 
+    export: true,
+    type: Number,
+  },
 };
 _.each(vars, (envProps, envName) => {
   let envVal = nconf.get(envName) || '[UNDEFINED]';
