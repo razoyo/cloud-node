@@ -7,6 +7,7 @@ const http = require('http');
 const express = require('express');
 const express_socket = require('express');
 const path = require('path');
+const favicon = require('serve-favicon');
 
 // Express Middleware
 const morgan = require('morgan');
@@ -41,6 +42,10 @@ main.use((req, res, next) => {
   req.sessionID = req.get('x-session') || null;
   next();
 });
+
+// Serve Angular App to Browser upon GET / request
+main.use(express.static(path.join(__dirname, 'dist')));
+main.use(favicon(path.join(__dirname, 'dist/assets', 'razoyo-favicon.gif')));
 
 // Logging
 main.use(morgan('short'));
