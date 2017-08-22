@@ -13,10 +13,6 @@ module.exports = function (
     console.log(`\nSocket Server [PORT: ${port}]\n`);
   });
 
-  var junk = path.join(__dirname, 'public')
-  app.use(express.static(junk));
-  console.log('path = ' + junk);
-
   const io = require('socket.io')(server);
   var clients = [];
 
