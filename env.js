@@ -22,6 +22,21 @@ const vars = {
     export: true,
     type: Number,
   },
+  MAGENTO_URL: {
+    required: true, 
+    export: true,
+    type: String,
+  },
+  MAGENTO_USERNAME: {
+    required: true, 
+    export: true,
+    type: String,
+  },
+  MAGENTO_PASSWORD: {
+    required: true, 
+    export: true,
+    type: String,
+  },
 };
 _.each(vars, (envProps, envName) => {
   let envVal = nconf.get(envName) || '[UNDEFINED]';
