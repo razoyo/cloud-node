@@ -36,6 +36,7 @@ const vars = {
     required: true, 
     export: true,
     type: String,
+    redacted: true,
   },
 };
 _.each(vars, (envProps, envName) => {

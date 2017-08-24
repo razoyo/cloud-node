@@ -1,27 +1,26 @@
 'use strict';
 const _             = require('lodash');
 const jsonave       = require('jsonave').instance;
-
-var customAttribute = function(a, attribute) {
-  for (let i = 0; i < a.length; i++) {
-    /*
-    if (a[i].attribute_code === attribute) {
-      return a[i].value;
-    }
-   */
-  }
-  return null;
-}
+const env						= require('../../../env');
 
 exports.toProduct = {
 	content: {
     name: { dataKey: 'name' },
     price: { dataKey: 'price' },
-    /*
-    picture_url: {
-      dataKey: customAttribute(jsonave('custom_attributes'), 'image')
-    }
-   */
+		picture_url: {
+			dataKey: jsonave('custom_attributes[?(@.attribute_code==="image")].value'),
+			single: true,
+      output: function(input) {
+        return env.MAGENTO_URL + input;
+      }
+		},
+		product_url: {
+			dataKey: jsonave('custom_attributes[?(@.attribute_code==="url_key")].value'),
+			single: true,
+      output: function(input) {
+        return env.MAGENTO_URL + input;
+      }
+		}
 	}
 };
 
