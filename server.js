@@ -3,11 +3,13 @@
  */
 
 // Dependencies
-const http = require('http');
-const express = require('express');
-const express_socket = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
+const http          = require('http');
+const cors          = require('cors');
+const express       = require('express');
+const express_socket= require('express');
+const favicon       = require('serve-favicon');
+const fs            = require('fs');
+const path          = require('path');
 
 // Express Middleware
 const morgan = require('morgan');
@@ -33,6 +35,9 @@ const main = express();
 // Needed for Heroku / Load Balancers
 main.enable('trust proxy');
 
+// Cors
+main.use(cors());
+
 // Body parsing
 main.use(bodyParser.json());
 main.use(bodyParser.urlencoded({ extended: true }));
@@ -45,7 +50,10 @@ main.use((req, res, next) => {
 
 // Serve Angular App to Browser upon GET / request
 main.use(express.static(path.join(__dirname, 'dist')));
-main.use(favicon(path.join(__dirname, 'dist/assets', 'razoyo-favicon.gif')));
+var faviconPath = path.join(__dirname, 'dist/assets', 'razoyo-favicon.gif');
+if (fs.existsSync(faviconPath)) {
+  main.use(favicon(faviconPath));
+}
 
 // Logging
 main.use(morgan('short'));
