@@ -1,9 +1,7 @@
 const express       = require('express');
 const path          = require('path');
 
-
 module.exports = function (
-  app,
   server,
   port
 ) {
@@ -67,6 +65,10 @@ console.log(`mirror code = ${code}`);
         obj['code'] = code;
         clients.push(obj);
       }
+    });
+    socket.on('broadcast', (data) => {
+console.log('broadcast = ' + JSON.stringify(data, null, 2));
+      socket.broadcast.to(data.socketId).emit(data.message, data.data);
     });
     socket.on('phone', (code) => {
 console.log(`phone code = ${code}`);

@@ -38,6 +38,11 @@ const vars = {
     type: String,
     redacted: true,
   },
+  PICTURE_DIRECTORY: {
+    required: true, 
+    export: true,
+    type: String,
+  },
 };
 _.each(vars, (envProps, envName) => {
   let envVal = nconf.get(envName) || '[UNDEFINED]';
