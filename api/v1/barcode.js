@@ -14,6 +14,9 @@ barcode.toUPC = (req) => {
     else {
       reject('Bad promise');
     }
+  })
+  .catch((err) => {
+    return err;
   });
 };
 

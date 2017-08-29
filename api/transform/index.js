@@ -88,3 +88,13 @@ console.log('data2x = ' + JSON.stringify(data2x, null, 2));
 exports.product = function (data) {
   return j2j.run(product.toProduct, data);
 };
+
+/*
+ * Input Magento2 product
+ * Output {
+ *          product_url: ...
+ *        }
+ */
+exports.productURL = function (data) {
+  return j2j.run(product.toProductURL, data);
+};

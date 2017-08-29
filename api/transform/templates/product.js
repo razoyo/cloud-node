@@ -11,14 +11,26 @@ exports.toProduct = {
 			dataKey: jsonave('custom_attributes[?(@.attribute_code==="image")].value'),
 			single: true,
       output: function(input) {
-        return env.MAGENTO_URL + input;
+        return env.MAGENTO_URL + '/' + input;
       }
 		},
 		product_url: {
 			dataKey: jsonave('custom_attributes[?(@.attribute_code==="url_key")].value'),
 			single: true,
       output: function(input) {
-        return env.MAGENTO_URL + input;
+        return env.MAGENTO_URL + '/' + input + '.html';
+      }
+		}
+	}
+};
+
+exports.toProductURL = {
+	content: {
+		product_url: {
+			dataKey: jsonave('custom_attributes[?(@.attribute_code==="url_key")].value'),
+			single: true,
+      output: function(input) {
+        return env.MAGENTO_URL + '/' + input + '.html';
       }
 		}
 	}
