@@ -38,7 +38,7 @@ const vars = {
     type: String,
     redacted: true,
   },
-  PICTURE_DIRECTORY: {
+  PICTURE_PATH: {
     required: true, 
     export: true,
     type: String,

@@ -67,8 +67,6 @@ const server = http.createServer(main);
 // Start the socket server
 const app = http.createServer(express_socket);
 
-console.log(`pictureDirectory = ${env.PICTURE_DIRECTORY}`);
-
 // Initialize socket.io
 const socket = require('./socket')(app, env.SOCKET_PORT);
 
