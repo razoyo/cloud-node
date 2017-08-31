@@ -12,16 +12,25 @@ module.exports = function (
   });
 
   const io = require('socket.io')(server);
+  // clients objects look like this, when connected:
+  //  {
+  //    "mirrorSocketId": "z85yaYe77sP3pR9GAAAC",
+  //    "code": "1210",
+  //    "phoneSocketId": "0iAahKipsga1E0aMAAAB"
+  //  }
   var clients = [];
 
   io.on('connection', (socket) => {
     console.log('made socket connection, id = ', socket.id);
 
+    /*
     socket.on('disconnect', (socket) => {
       // tell other pair it's deleted and remove from clients
+console.log(`disconnect socketId=${socket.id}`);
       for (let i = 0; i < clients.length; i++) {
         let bRemove = false;
         let client = clients[i];
+console.log(`client[${i}] = ` + JSON.stringify(clients[i], null, 2));
         if (client.hasOwnProperty('phoneSocketId')) { // check phone
           if (io.sockets.sockets[client.phoneSocketId] == undefined) { // phone disconnected
             bRemove = true;
@@ -45,6 +54,7 @@ module.exports = function (
         }
       }
     });
+   */
     socket.on('mirror', (code) => {
 console.log(`mirror code = ${code}`);
       let bUpdated = false;
