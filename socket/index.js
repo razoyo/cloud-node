@@ -23,19 +23,21 @@ module.exports = function (
   io.on('connection', (socket) => {
     console.log('made socket connection, id = ', socket.id);
 
-    /*
+    socket.on('broadcast', (data) => {
+console.log('broadcast = ' + JSON.stringify(data, null, 2));
+      socket.broadcast.to(data.socketId).emit(data.message, data.data);
+    });
     socket.on('disconnect', (socket) => {
       // tell other pair it's deleted and remove from clients
-console.log(`disconnect socketId=${socket.id}`);
       for (let i = 0; i < clients.length; i++) {
         let bRemove = false;
         let client = clients[i];
-console.log(`client[${i}] = ` + JSON.stringify(clients[i], null, 2));
         if (client.hasOwnProperty('phoneSocketId')) { // check phone
           if (io.sockets.sockets[client.phoneSocketId] == undefined) { // phone disconnected
             bRemove = true;
             if (client.hasOwnProperty('mirrorSocketId')) { // tell mirror
               io.to(client.mirrorSocketId).emit('problem', 'phone disconnected');
+console.log('disconnect phone');
             }
           }
         }
@@ -45,6 +47,7 @@ console.log(`client[${i}] = ` + JSON.stringify(clients[i], null, 2));
               bRemove = true;
               if (client.hasOwnProperty('phoneSocketId')) { // tell phone
                 io.to(client.phoneSocketId).emit('problem', 'mirror disconnected');
+console.log('disconnect mirror');
               }
             }
           }
@@ -54,7 +57,6 @@ console.log(`client[${i}] = ` + JSON.stringify(clients[i], null, 2));
         }
       }
     });
-   */
     socket.on('mirror', (code) => {
 console.log(`mirror code = ${code}`);
       let bUpdated = false;
@@ -75,10 +77,6 @@ console.log(`mirror code = ${code}`);
         obj['code'] = code;
         clients.push(obj);
       }
-    });
-    socket.on('broadcast', (data) => {
-console.log('broadcast = ' + JSON.stringify(data, null, 2));
-      socket.broadcast.to(data.socketId).emit(data.message, data.data);
     });
     socket.on('phone', (code) => {
 console.log(`phone code = ${code}`);
