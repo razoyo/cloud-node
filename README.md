@@ -13,6 +13,7 @@ NODE_ENV=development
 PORT=3000
 SOCKET_PORT=4200
 MAGENTO_URL=https://www.example.com
+MAGENTO_MEDIA_URL=https://www.example.com/media
 MAGENTO_USERNAME=username
 MAGENTO_PASSWORD=password
 PICTURE_DIRECTORY=dist/assets/customer_photos
@@ -55,6 +56,14 @@ PICTURE_DIRECTORY=dist/assets/customer_photos
       </td>
       <td align="left">
 				A string. This is the base URL for Magento2.
+      </td>
+		</tr>
+		<tr>
+      <td align="left">
+        MAGENTO_MEDIA_URL
+      </td>
+      <td align="left">
+				A string. This is the base URL for Magento2 images.  GET 'V1/store/storeConfigs' will get a 'base_media_url' that can be used--without the final '/'.
       </td>
 		</tr>
 		<tr>

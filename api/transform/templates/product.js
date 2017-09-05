@@ -7,20 +7,19 @@ exports.toProduct = {
 	content: {
     name: { dataKey: 'name' },
     price: { dataKey: 'price' },
+    product_url: {
+      dataKey: 'id',
+      output: function(input) {
+        return env.MAGENTO_URL + '/catalog/product/view/id/' + input
+      }
+    },
 		picture_url: {
-			dataKey: jsonave('custom_attributes[?(@.attribute_code==="image")].value'),
+			dataKey: jsonave('custom_attributes[?(@.attribute_code==="swatch_image")].value'),
 			single: true,
       output: function(input) {
-        return env.MAGENTO_URL + '/' + input;
+        return env.MAGENTO_MEDIA_URL + '/catalog/product' + input;
       }
 		},
-		product_url: {
-			dataKey: jsonave('custom_attributes[?(@.attribute_code==="url_key")].value'),
-			single: true,
-      output: function(input) {
-        return env.MAGENTO_URL + '/' + input + '.html';
-      }
-		}
 	}
 };
 

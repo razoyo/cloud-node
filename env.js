@@ -27,6 +27,11 @@ const vars = {
     export: true,
     type: String,
   },
+  MAGENTO_MEDIA_URL: {
+    required: true, 
+    export: true,
+    type: String,
+  },
   MAGENTO_USERNAME: {
     required: true, 
     export: true,
