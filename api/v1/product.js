@@ -16,6 +16,7 @@ const product = module.exports;
 //              data: product
 //            }
 function productFromUPC (magento, upc) {
+  let price = 0;
   return magento.request('GET',            //method
                   '/V1/products',   //url
                   {                 //urlParams
@@ -36,6 +37,7 @@ function productFromUPC (magento, upc) {
   .then(data => {
     // check if you need to get the parent
 //    console.log('data2 = ' + JSON.stringify(data, null, 2));
+    price = data.items[0].price; // save simple product price
     if ([2,3,4].indexOf(data.items[0].visibility) != -1) {
       return new Promise((resolve, reject) => {
         resolve(data);
@@ -73,6 +75,7 @@ function productFromUPC (magento, upc) {
       if (data.items.length !== 1) {
         reject('Did not find unique parent product');
       }
+      data.items[0].price = price; // restore simple product price
       let obj = {
         fOK: true,
         data: data.items[0]
