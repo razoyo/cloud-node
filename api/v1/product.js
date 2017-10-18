@@ -31,6 +31,7 @@ function productFromUPC (magento, upc) {
       if (data.items.length !== 1) {
         reject('Did not fetch a unique product. Got ' + data.items.length + ' items.');
       }
+      console.log('product return ',data);
       resolve(data);
     });
   })
