@@ -1,23 +1,14 @@
 # cloud-node
 
-This is the API to communicate with Magento and manage the socket.io stuff.
+This is the API to communicate with Magento and manage the socket.io stuff on the web app side of the Magic Mirror project. To run this successfully, you'll need to run this application on your local environment and the Magic Mirror application at the same time.
 
 ## Install
 First of all, clone the repository, then:
 ```
 npm install
 ```
-You need to make an .env file in the root directory that looks like this:
-```
-NODE_ENV=development
-PORT=3000
-SOCKET_PORT=4200
-MAGENTO_URL=https://www.example.com
-MAGENTO_MEDIA_URL=https://www.example.com/media
-MAGENTO_USERNAME=username
-MAGENTO_PASSWORD=password
-PICTURE_DIRECTORY=dist/assets/customer_photos
-```
+ We've included a .env file that will communicate with a working Magento store, you will need to replace the USERNAME and PASSWORD with the information provided at the NodeSchool Meetup.
+ 
 <table>
   <tbody>
     <tr>
