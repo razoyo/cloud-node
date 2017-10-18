@@ -308,6 +308,7 @@ var SocketService = (function () {
         var _this = this;
         var observable = new Observable_1.Observable(function (observer) {
             _this.socket.on('problem', function (data) {
+                console.log('there was a problem ', data);
                 observer.next(data);
             });
             return function () {
@@ -378,7 +379,8 @@ var _a;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stateInit = {
-    socket_url: 'ec2-54-221-218-6.compute-1.amazonaws.com:4000',
+    //  socket_url: 'ec2-54-221-218-6.compute-1.amazonaws.com:4000',
+    socket_url: 'localhost:4000',
 };
 //# sourceMappingURL=/usr/local/bin/repos/mm-web-app/src/stateInit.js.map
 
@@ -446,7 +448,7 @@ var SyncComponent = (function () {
             _this.problem = String(data);
             _this.mirrorSocketId = null;
             _this.code = null;
-            _this.feedback = '';
+            _this.feedback = 'unable to connect to socket server';
         });
         this.connectObserver = this.socketService
             .getConnect()
